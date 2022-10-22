@@ -111,9 +111,8 @@ public class RestfulBooker {
                 .then();
 
         Response response = validatableResponse.extract().response();
-        JsonPath jsonPath = response.jsonPath();
-       // Assert.assertEquals(response.asString() , "null") ;
-        validatableResponse.statusCode(201); // in general must be 204, but in this doc it is 201 created
+        validatableResponse.statusCode(201); //in general must be 204, but in this doc it is 201 created
+        Assert.assertEquals(response.asString() , null) ; //in general must be empty, but in this doc it is created
 
 
     }
