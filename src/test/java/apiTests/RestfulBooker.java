@@ -23,7 +23,8 @@ public class RestfulBooker {
                     "password" : "password123"
                 }
                 """;
-        ValidatableResponse validatableResponse = given().body(body).header("Content-Type", "application/json")
+        ValidatableResponse validatableResponse = given().body(body)
+                .header("Content-Type", "application/json")
                 .when().post(endpoint).then();
         Response response = validatableResponse.extract().response();
         JsonPath jsonPath = response.jsonPath();
@@ -111,9 +112,8 @@ public class RestfulBooker {
                 .then();
 
         Response response = validatableResponse.extract().response();
-        validatableResponse.statusCode(201); //in general must be 204, but in this doc it is 201 created
         Assert.assertEquals(response.asString() , null) ; //in general must be empty, but in this doc it is created
-
+        validatableResponse.statusCode(201); //in general must be 204, but in this doc it is 201 created
 
     }
 }
